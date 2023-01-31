@@ -1,4 +1,15 @@
-https://reactjs.org/ 
+https://reactjs.org/
 start from above website
 
+A JavaScript library for building user interfaces
 
+React is all about componenet( small chunks of user interface)
+
+you can make multiple component with single componenet and need to change only one component to change all the component
+//which finally increases the speed
+
+steps:-
+install node
+install chrome
+install react developer tool extention
+text editor
