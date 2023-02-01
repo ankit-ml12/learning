@@ -1,0 +1,14 @@
+
+npm init
+create json file 
+
+installing package local:- 
+npm i <package name>
+
+installing package global 
+npm i <package name> --g
+
+
+react more about react app
+https://github.com/facebook/create-react-app
+

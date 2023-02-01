@@ -1,0 +1,17 @@
+"we write whole this thing in index.js in src to create component and render on some id ";
+
+function Greeting() {
+  --> first character must be capital 
+  -->here we have to return the jsx not html
+  return <h1>Hello ankit Patidar</h1>;
+}
+
+-->now i want to show this greeting component in root id which is present in /public/index..html file
+
+-->to render this element we use render methode
+-->we need to pass two thing one which component you want to render and where you want to render
+ReactDom.render(<Greeting />, document.getElementById("root"));
+
+Note:-
+1. use closing bracket in every component in image br etc
+2. return only one compnenet if it is multiple you can combine it in single element
