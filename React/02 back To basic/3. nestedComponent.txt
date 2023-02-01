@@ -1,0 +1,18 @@
+import React from "react";
+import ReactDom from "react-dom";
+
+function Greeting() {
+  //here we have to return the jsx not html
+  return (
+    <div>
+      <NameOf />
+      <AgeOf />
+    </div>
+  );
+}
+
+const NameOf = () => <h1>Ankit Patiar</h1>;
+const AgeOf = () => <h2>24</h2>;
+
+ReactDom.render(<Greeting />, document.getElementById("root"));
+ 
