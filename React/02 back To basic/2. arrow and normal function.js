@@ -14,7 +14,6 @@ import ReactDom from "react-dom";
 // const Greeting = () => {
 //   return React.createElement("h1", {}, "hello Ankit");
 // };
-
 //or
 
 const Greeting = () => {
