@@ -7,6 +7,7 @@ const UseStateObject = () => {
     message: "random message",
   });
 
+  // use can set multiple smaller state Value
   // const [name,setName] = useState('peter')
   // const [age,setAge] = useState(24)
   // const [message,setMessage] = useState('random message')
