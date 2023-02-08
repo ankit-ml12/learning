@@ -12,3 +12,23 @@ npm i <package name> --g
 react more about react app
 https://github.com/facebook/create-react-app
 
+1. node_modules Contains all dependencies required by the app. Main dependencies also listed in package.json
+
+2. public Contains static assets including index.html (page template)
+
+index.html
+title
+fonts
+css
+favicon
+id="root" - our entire app
+src In simplest form it's the brain of our app. This is where we will do all of our work. src/index.js is the JavaScript entry point.
+
+3 .gitignore Specifies which files source control (Git) should ignore
+
+4. package.json Every Node.js project has a package.json and it contains info about our project, for example list of dependencies and scripts
+
+5. package-lock.json A snapshot of the entire dependency tree
+
+6. README The markdown file where you can share more info about the project for example build instructions and summary
+

@@ -17,6 +17,7 @@ const UseEffectFetchData = () => {
     getUser();
   }, []);
   // allways make sure to pass [] when you rerendering the useState
+  // to prevent continuous rerendering
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 
 // function Greeting() {
-//   //here we have to return the jsx not html
+` here we have to return the jsx not html`;
 //   return (
 //     <div>
 //       <h1>Hello ankit Patidar</h1>;
@@ -25,6 +25,6 @@ const Greeting = () => {
 };
 
 //three element are {html element, prop, content}
-// so this arrow function get messier after sometime
+// so this way of writing jsx get messier after sometime
 
 ReactDom.render(<Greeting />, document.getElementById("root"));
