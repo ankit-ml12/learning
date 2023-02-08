@@ -11,7 +11,7 @@ function Greeting() {
   );
 }
 
-const NameOf = () => <h1>Ankit Patiar</h1>;
+const NameOf = () => <h1>Ankit Patidar</h1>;
 const AgeOf = () => <h2>24</h2>;
 
 ReactDom.render(<Greeting />, document.getElementById("root"));
