@@ -6,6 +6,9 @@
 
 ```js
 //we transfer like this
+
+//we have two way using import again and agin using useContext, Nacbar Context
+// or we can create custome hook and use then use that hook as global context
 import React, { createContext, useContext, useState } from 'react'
 import NavLinks from './NavLinks'
 
