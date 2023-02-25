@@ -3,10 +3,11 @@ start from above website
 
 A JavaScript library for building user interfaces
 
-React is all about componenet( small chunks of user interface)
+React is all about componet( small chunks of user interface)
 
 you can make multiple component with single componenet and need to change only one component to change all the component
-//which finally increases the speed
+
+speed:- in backend react uses a virtual dom, where only thecomponent that need to be updated is affected. And its done without re rendering the whole app. Which in term increases the speed of the find product as well as user experience.
 
 steps:-
 install node
