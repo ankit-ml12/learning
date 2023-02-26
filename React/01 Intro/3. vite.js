@@ -9,11 +9,9 @@ http://localhost:5173/
 Vite Setup
 need to use .jsx extension
 
-index.html in the source instead of public
+index.html in the outside of source and public
 
-assets still in public
-
-instead of index.js, need to use main.jsx
+instead of index.js, need to use main.jsx in src folder
 
 to spin up dev server - "npm run dev"
 
