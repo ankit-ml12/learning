@@ -1,2 +1,4 @@
-WE CAN WRITE CODE IN .JS FILE AND CAN RUNE USING NODE -.JS  or directly node (nameof file without extention)
-THIS WILL EXECUTE OUR NODE FILE 
+WE CAN WRITE CODE IN .JS FILE AND CAN RUNE USING NODE -.JS or directly node (nameof file without extention)
+THIS WILL EXECUTE OUR NODE FILE
+
+Command-line interfaces (CLIs) built in Node.js allow you to automate repetitive tasks while leveraging the vast Node.js ecosystem. And thanks to package managers like npm and yarn, these can be easily distributed and consumed across multiple platforms. In this post we'll look at why you might want to write a CLI, how to use Node.js for it, some useful packages and how you can distribute your new CLI.

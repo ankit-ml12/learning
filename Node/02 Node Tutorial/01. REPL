@@ -1,5 +1,5 @@
 REPL := READ, EVALUATE, PRINT  AND LOOP 
 
-WE TYPE node in terminal and then we are able to user javascript in the terminal this is because of REPL
+just type node in terminal and press enter then we are able to user javascript in the terminal this is because of REPL
 
 press control + c to exit

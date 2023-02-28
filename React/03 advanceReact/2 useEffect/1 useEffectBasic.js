@@ -25,8 +25,7 @@ const UseEffectBasics = () => {
   )
 }
 
-export default UseEffectBasics// so we use useEffect when we want side effect or change something outside the component
-//why we need :- if we use function to update the value then it may cause infinite loop to prevent that we use use effect
+export default UseEffectBasics//why we need :- if we use function to update the value then it may cause infinite loop to prevent that we use use effect // so we use useEffect when we want side effect or change something outside the component
 
 `
 useEffect is a hook in React that allows you to perform side effects in function components.There is no need for urban dictionary - basically any work outside of the component. Some examples of side effects are: subscriptions, fetching data, directly updating the DOM, event listeners, timers, etc.
@@ -38,4 +37,5 @@ second argument - dependency array
 by default runs on each render (initial and re-render)
 cb can't return promise (so can't make it async)
 if dependency array empty [] runs only on initial render
+we directly can't use async and await in useeffect it does not accept the promise return by that function
 `

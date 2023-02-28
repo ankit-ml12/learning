@@ -6,9 +6,9 @@
 // module     - info about current module (file)
 // process    - info about env where the program is being executed
 
-//there is mode...
-console.log(__dirname);
+//there is more...
+console.log(__dirname)
 //Time function are also global function and available
 setInterval(() => {
-  console.log("hello world"); //C:\Users\patid\OneDrive\Desktop\All projects\learning\Node\02 Node Tutorial
-}, 1000);
+  console.log('hello world')
+}, 1000)

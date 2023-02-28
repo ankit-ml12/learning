@@ -5,7 +5,7 @@ const UseEffectBasics = () => {
 
   //remeber we cannot put hook inside the conditional statement which is wrong
   //but we can put conditionall statement inside the hook this is allowed
-  //make sure you use return statement  else valye become undefine
+  //make sure you use return statement  else value become undefine
   useEffect(() => {
     console.log('call useEffect')
     if (value > 0) {
