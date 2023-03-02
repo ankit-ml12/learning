@@ -64,3 +64,8 @@ export default MultipleReturnsFetchData
 ```
 
 #### if you access any element from the object and at that place there is nothing then obj return undefine keyword
+
+#### order matter
+
+> if there is multiple return like error, loading , output and you want to destructure some hook to show them in output. So mack sure the order of location where you destructuring the obj metter.
+> allways destructure before the output return and after the error and loading
