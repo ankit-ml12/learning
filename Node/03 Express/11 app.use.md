@@ -34,7 +34,7 @@ app.listen(5000, () => {
 > if there are multiple middle ware we want to use we need to pass then in arr in app.use()
 > like app.use([logger, author])
 > then order of working of middler is depend on the order of their position in arr
-> we cacn also pass multiple middleware inside the method itself in the array
+> we can also pass multiple middleware inside the method itself in the array
 
 ---
 
