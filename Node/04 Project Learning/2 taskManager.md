@@ -83,3 +83,42 @@ module.exports = { getAllTasks, creatTask, getTask, updateTask, deleteTask }
 
 - we will set the global varibal to this url http://localhost:3000/api/v1/
 - to use that global variable in postmen we use {{URL}}
+
+5.  crate model folder for schema and start writing schema for project
+
+- read more about on documetation page
+
+```js
+//basic setup
+const mongoose = require('mongoose')
+
+const TaskSchema = new mongoose.Schema({
+  name: String,
+  complete: Boolean,
+})
+
+module.exports = mongoose.model('Task', TaskSchema)
+```
+
+```js
+//upgread to
+//advance setup
+const mongoose = require('mongoose')
+
+const TaskSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'must provide name'],
+    trim: true,
+    maxlength: [20, 'name cannot be more then 20 character'],
+  },
+  complete: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+module.exports = mongoose.model('Task', TaskSchema)
+```
+
+6. after we set every api request in controller
