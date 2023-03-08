@@ -4,6 +4,7 @@ start from above website
 A JavaScript library for building user interfaces
 
 React is all about componet( small chunks of user interface)
+React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called “components”.
 
 you can make multiple component with single componenet and need to change only one component to change all the component
 
