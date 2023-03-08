@@ -296,3 +296,44 @@ const getTask = asyncWrapper(async (req, res, next) => {
   return res.status(200).json({ task })
 })
 ```
+
+10. at the end we reach to this stage
+
+```js
+//controller
+const getTask = asyncWrapper(async (req, res, next) => {
+  const { id: taskID } = req.params
+  const task = await Task.findOne({ _id: taskID })
+  if (!task) {
+    return next(createCustomError(`No task with id ${taskID}`, 404))
+  }
+  return res.status(200).json({ task })
+})
+
+//error/custom-error.js
+
+class CustomAPIError extends Error {
+  constructor(message, statusCode) {
+    super(message)
+    this.statusCode = statusCode
+  }
+}
+const createCustomError = (msg, statusCode) => {
+  return new CustomAPIError(msg, statusCode)
+}
+
+module.exports = { createCustomError, CustomAPIError }
+
+//ERROR HANDLER
+const { CustomAPIError } = require('../errors/custom-error')
+const errorHandlerMiddleware = (err, req, res, next) => {
+  if (err instanceof CustomAPIError) {
+    return res.status(err.statusCode).json({ msg: err.message })
+  }
+  return res.status(500).json({ msg: `something went wrong please try again` })
+}
+
+module.exports = errorHandlerMiddleware
+```
+
+11. this is only for understanding in future we will use some package to make this work easy
