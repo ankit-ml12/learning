@@ -122,3 +122,177 @@ module.exports = mongoose.model('Task', TaskSchema)
 ```
 
 6. after we set every api request in controller
+
+```js
+const Task = require('../models/Task')
+const getAllTasks = async (req, res) => {
+  try {
+    const task = await Task.find({})
+    res.status(200).json({ size: task.length, task })
+  } catch (error) {
+    res.status(500).json({ msg: error })
+  }
+}
+const creatTask = async (req, res) => {
+  try {
+    const task = await Task.create(req.body)
+    res.status(201).json({ task })
+  } catch (error) {
+    res.status(500).json({ msg: error })
+  }
+}
+const getTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params
+    const task = await Task.findOne({ _id: taskID })
+    console.log(task)
+    if (!task) {
+      return res.status(404).json({ msg: `No task found with id ${taskID}` })
+    }
+    return res.status(200).json({ task })
+  } catch (error) {
+    res.status(500).json({ msg: error })
+  }
+}
+const updateTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params
+    //we pass third parameter to update the return task value and run the validator from the schema
+    const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+      new: true,
+      runValidators: true,
+    })
+    console.log(task)
+    if (!task) {
+      return res.status(404).json({ msg: `No task found with id ${taskID}` })
+    }
+    return res.status(200).json({ task })
+  } catch (error) {
+    res.status(500).json({ msg: error })
+  }
+}
+const deleteTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params
+    const task = await Task.findByIdAndDelete({ _id: taskID })
+    console.log(task)
+    if (!task) {
+      return res.status(404).json({ msg: `No task found with id ${taskID}` })
+    }
+    return res.status(200).json({ task })
+  } catch (error) {
+    res.status(500).json({ msg: error })
+  }
+}
+
+module.exports = { getAllTasks, creatTask, getTask, updateTask, deleteTask }
+```
+
+6. after that we use app.use()after all the route on app.js and set app.use(notfound)
+
+7. set async wrapper middleware and wrape every try and catch inthe controller
+
+```js
+//async error like this
+const asyncWrapper = (fn) => {
+  return async (req, res, next) => {
+    try {
+      await fn(req, res, next)
+    } catch (error) {
+      next(error)
+    }
+  }
+}
+module.exports = asyncWrapper
+
+//controller code refractor to
+const asyncWrapper = require('../middleware/async')
+const Task = require('../models/Task')
+
+const getAllTasks = asyncWrapper(async (req, res) => {
+  const task = await Task.find({})
+  res.status(200).json({ size: task.length, task })
+})
+
+const creatTask = asyncWrapper(async (req, res) => {
+  const task = await Task.create(req.body)
+  res.status(201).json({ task })
+})
+
+const getTask = asyncWrapper(async (req, res) => {
+  const { id: taskID } = req.params
+  const task = await Task.findOne({ _id: taskID })
+  if (!task) {
+    return res.status(404).json({ msg: `No task found with id ${taskID}` })
+  }
+  return res.status(200).json({ task })
+})
+
+const updateTask = asyncWrapper(async (req, res) => {
+  const { id: taskID } = req.params
+  //we pass third parameter to update the return task value and run the validator from the schema
+  const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+  if (!task) {
+    return res.status(404).json({ msg: `No task found with id ${taskID}` })
+  }
+  return res.status(200).json({ task })
+})
+
+const deleteTask = asyncWrapper(async (req, res) => {
+  const { id: taskID } = req.params
+  const task = await Task.findByIdAndDelete({ _id: taskID })
+  if (!task) {
+    return res.status(404).json({ msg: `No task found with id ${taskID}` })
+  }
+  return res.status(200).json({ task })
+})
+
+module.exports = { getAllTasks, creatTask, getTask, updateTask, deleteTask }
+```
+
+8. custom error handler in express (read more about it on express)
+
+- if we want to send custom error then we create this middleware and import in app.js after all the routes
+
+```js
+const errorHandlerMiddleware = (err, req, res, next) => {
+  //  return res.status(500).json({ msg: err })
+  //we can send our custom error
+  return res.status(500).json({ msg: 'something went wrong try again letter' })
+}
+
+module.exports = errorHandlerMiddleware
+```
+
+9. custom error class to sent the custom error of any type
+
+- he we again refactor out code
+
+- to create error from error location and send to this error handle we do this
+
+```js
+const errorHandlerMiddleware = (err, req, res, next) => {
+  //  return res.status(500).json({ msg: err })
+  //we can send our custom error
+  // return res.status(500).json({ msg: 'something went wrong try again letter' })
+  return res.status(err.status).json({ msg: err.message })
+}
+
+module.exports = errorHandlerMiddleware
+
+//controller
+const getTask = asyncWrapper(async (req, res, next) => {
+  const { id: taskID } = req.params
+  const task = await Task.findOne({ _id: taskID })
+  if (!task) {
+    const error = new Error('Not Found')
+    error.status = 404
+    return next(error)
+    return res.status(404).json({ msg: `No task found with id ${taskID}` })
+  }
+  return res.status(200).json({ task })
+})
+```
