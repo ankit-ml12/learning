@@ -18,3 +18,37 @@ const getAllProductsStatic = async (req, res) => {
   throw new Error('testing asynk error')
 }
 ```
+
+#### further modifying the error file
+
+```js
+class CustomAPIError extends Error {
+  constructor(message) {
+    super(message)
+  }
+}
+
+module.exports = CustomAPIError
+
+const customAPIError = require('./custom-error')
+class BadRequest extends customAPIError {
+  constructor(message) {
+    super(message)
+    this.statusCode = 400
+  }
+}
+
+module.exports = BadRequest
+
+const customAPIError = require('./custom-error')
+class Unaunthenticated extends customAPIError {
+  constructor(message) {
+    super(message)
+    this.statusCode = 401
+  }
+}
+
+module.exports = Unaunthenticated
+```
+
+- import all of then in index.js in same folder and then export
