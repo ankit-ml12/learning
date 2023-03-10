@@ -58,3 +58,15 @@ export default ControlledInputs
 
 - to handel submit button avoid using onclick on submit
 - use onSubmit on form tag
+
+### Extra
+
+```js
+<label htmlFor="name" >  Name</label>
+<input id="name" value={name} onChange={(e) => { setName(e.target.value)}} />
+```
+
+- Two connect html input and label we use id and htmlFor in react (it is For in html)
+
+- e.target.name give me the detail about name attribute of target element
+- e.target.value give current value of the input
