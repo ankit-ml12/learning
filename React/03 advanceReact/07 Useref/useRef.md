@@ -1,5 +1,6 @@
 #### useRef
 
+- it create a mutable variable which will not rerender the variable
 - DOES NOT TRIGGER RE-RENDER
 - preserves the value between renders
 - or we can say the get only once obj is rendered
@@ -20,6 +21,7 @@ const UseRefBasics = () => {
   // })
   const handleSubmit = (e) => {
     e.preventDefault()
+    //this give us the the form element and we can edit it
     const name = refContainer.current.value
     console.log(name)
   }
@@ -52,3 +54,5 @@ const UseRefBasics = () => {
 
 export default UseRefBasics
 ```
+
+- we use to play and pass the video player
