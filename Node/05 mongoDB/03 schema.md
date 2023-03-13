@@ -38,3 +38,19 @@ module.exports = mongoose.model('Task', TaskSchema)
 - we learn more advance in future lecture
 - https://mongoosejs.com/docs/queries.html
 - learn about mongooes query
+
+---
+
+- WE CAN ALSO assign each created property to user with time
+
+```js
+ createby: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'Please provide User'],
+    },
+
+  {
+    timestamps: true,
+  }
+```
