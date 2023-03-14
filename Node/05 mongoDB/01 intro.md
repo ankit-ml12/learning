@@ -13,3 +13,5 @@
 - set the user and password in database access
 - create the network access
 - get the url to connect from the database
+
+> Note:- IN mongodb change access from local to anywhere, otherwise app won't work
