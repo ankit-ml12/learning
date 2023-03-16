@@ -1,10 +1,8 @@
 #### useReducer
 
-- let's add reset functionality
-- create function that set's people back to data array
-- create another button, similar to clear just for reset
-- use conditional rendering to toggle between the buttons,
-  depending on people value
+- it is lite version of redux
+- when there is too many state variable in a project and too many developer working on the same project then it is difficult to manage the useState variable
+- where the state managment library come into play
 
 ---
 
