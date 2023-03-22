@@ -1,0 +1,4 @@
+- we use fusion chart
+- to create graph and all other thing inside the project
+- https://www.fusioncharts.com/dev/chart-guide/list-of-charts
+- use above link to get list of charts
