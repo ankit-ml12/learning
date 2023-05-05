@@ -36,3 +36,49 @@ UserSchema.pre('save', async function () {
 //to give 1 review by user per 1 product
 ReviewSchema.index({ product: 1, user: 1 }, { unique: true })
 ```
+
+populate method:- we use this method in order to get more information along with id
+
+- for ex we are requesting for review and as we know along with review we also get product id and user id so i can request from the mongodb to get more information of the user id or product id like this way
+
+```js
+const getAllReviews = async (req, res) => {
+  const reviews = await Review.find({}).populate({
+    path: 'product',
+    select: 'name company price',
+  })
+
+  res.status(StatusCodes.OK).json({ reviews, count: reviews.length })
+}
+```
+
+### mongodb virtuals
+
+- In MongoDB, virtuals are fields that are not actually stored in the database but are computed on the fly from other fields. They are called "virtual" because they do not exist as actual properties of the documents stored in the database.
+
+- or you can think virtuas as a property which does not exist in databasee, it exist only logical
+
+- Virtual fields can be used to compute derived values or to present data in a different format from how it is stored in the database. They are defined using virtual getters and setters in the schema definition of a MongoDB collection.
+
+- For example, suppose you have a collection of products with a "price" field and you want to calculate the sales tax on each product. You can define a virtual field called "tax" that computes the sales tax based on the price field.
+
+- another example of this let suppose you have ecomm website where you have connection of every review with user and the object using populate method but in case of the if you want all review of perticular product so such connection does not exist in that case we use mongoose virtuals
+
+```js
+ { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+```
+
+- first you need to write this thing in the the breack of timestamp to except the virtuals
+- and we add this in product model to get all review of perticular product
+
+```js
+productSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id',
+  foreignField: 'product',
+  justOne: false,
+  match: { rating: 5 },
+})
+```
+
+- we can also set another route for this where we pass the product id and use that product id and use find method on all the review that have that product id
