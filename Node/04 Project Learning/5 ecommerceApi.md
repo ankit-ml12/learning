@@ -94,3 +94,50 @@ ProductSchema.pre('remove', async function (next) {
   await this.model('Review').deleteMany({ product: this._id })
 })
 ```
+
+### now update average review in product schema
+
+```js
+ReviewSchema.statics.calculateAverageRating = async function (productId) {
+  const result = await this.aggregate([
+    { $match: { product: productId } },
+    {
+      $group: {
+        _id: null,
+        averageRating: { $avg: '$rating' },
+        numOfReviews: { $sum: 1 },
+      },
+    },
+  ])
+
+  try {
+    await this.model('Product').findOneAndUpdate(
+      { _id: productId },
+      {
+        averageRating: Math.ceil(result[0]?.averageRating || 0),
+        numOfReviews: result[0]?.numOfReviews || 0,
+      }
+    )
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+ReviewSchema.post('save', async function () {
+  await this.constructor.calculateAverageRating(this.product)
+})
+
+ReviewSchema.post('remove', async function () {
+  await this.constructor.calculateAverageRating(this.product)
+})
+```
+
+- we use above save and remove methd in our review controller during saving and removing of review
+- to store the average review in product we also add one more element in our product shchema num of review so we can find average of all reviews
+
+```js
+ numOfReviews: {
+      type: Number,
+      default: 0,
+    },
+```
