@@ -141,3 +141,13 @@ ReviewSchema.post('remove', async function () {
       default: 0,
     },
 ```
+
+---
+
+## aggregator pipeline
+
+- In MongoDB, an aggregator pipeline is a framework for data processing and transformation. It allows you to perform complex data manipulations and aggregations on documents within a collection. The aggregation pipeline consists of a series of stages, where each stage performs a specific operation on the input documents and passes the results to the next stage.
+
+The pipeline stages are applied sequentially, and each stage can modify or reshape the data before passing it to the next stage. Some common pipeline stages include filtering, grouping, sorting, projecting, and performing various aggregation operations like sum, average, count, and more.
+
+Each stage in the pipeline takes the input documents and produces a transformed output that is fed into the next stage. This allows you to build sophisticated queries and perform advanced data analysis by combining multiple stages together.
