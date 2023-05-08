@@ -82,3 +82,15 @@ productSchema.virtual('reviews', {
 ```
 
 - we can also set another route for this where we pass the product id and use that product id and use find method on all the review that have that product id
+
+### remove reviews
+
+- let suppose if you are removing some product from the database that it is not worth it to not remove the review assosiated with it.
+- so the movement we are removing the product we also need to remove all the review assosiated with it.
+- so to deal with that we first remove all the review assosiate with that product and then delete the that product
+
+```js
+ProductSchema.pre('remove', async function (next) {
+  await this.model('Review').deleteMany({ product: this._id })
+})
+```
