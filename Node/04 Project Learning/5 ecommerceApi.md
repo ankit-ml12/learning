@@ -151,3 +151,19 @@ ReviewSchema.post('remove', async function () {
 The pipeline stages are applied sequentially, and each stage can modify or reshape the data before passing it to the next stage. Some common pipeline stages include filtering, grouping, sorting, projecting, and performing various aggregation operations like sum, average, count, and more.
 
 Each stage in the pipeline takes the input documents and produces a transformed output that is fed into the next stage. This allows you to build sophisticated queries and perform advanced data analysis by combining multiple stages together.
+
+Here's an example to illustrate the concept of an aggregation pipeline in MongoDB:
+
+```javascript
+db.collection.aggregate([
+  { $match: { status: 'active' } }, // Filter documents by status
+  { $group: { _id: '$category', total: { $sum: '$quantity' } } }, // Group by category and calculate the sum of quantities
+  { $sort: { total: -1 } }, // Sort by total quantity in descending order
+  { $limit: 5 }, // Take only the top 5 results
+  { $project: { _id: 0, category: '$_id', total: 1 } }, // Project the output fields
+])
+```
+
+In this example, the aggregation pipeline starts by filtering documents with the "status" field equal to "active". Then, it groups the remaining documents by their "category" field and calculates the sum of the "quantity" field within each group. The results are sorted in descending order of the total quantity, limited to the top 5, and finally projected to include only the "category" and "total" fields.
+
+The aggregator pipeline is a powerful tool that allows you to perform complex data transformations and aggregations in a flexible and efficient manner within MongoDB.
