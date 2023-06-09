@@ -38,7 +38,7 @@ const getTask = asyncWrapper(async (req, res, next) => {
 })
 ```
 
-- https://expressjs.com/en/guide/error-handling.html#:~:text=This%20default%20error%2Dhandling%20middleware,client%20with%20the%20stack%20trace. go to this article and read about custom error handler
+- https://expressjs.com/en/guide/error-handling.html#:~:text=This%20default%20error%2Dhandling%20middleware,client%20with%20the%20stack%20trace. go to this article and read about custom error handler and also about writing error handler
 
 ### The default error handler
 
