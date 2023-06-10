@@ -67,3 +67,26 @@ const Items = () => {
 }
 export default Items
 ```
+
+- two way to implement
+
+```js
+const { isLoading, data } = useQuery({
+  queryKey: ['tasks'],
+  queryFn: async () => {
+    const { data } = await customFetch.get('/')
+    return data
+  },
+})
+// to access the array we use datataskList.map(()=>{})
+
+const { isLoading, data } = useQuery({
+  queryKey: ['tasks'],
+  queryFn: () => customFetch.get('/'),
+})
+// to access the array we use data.data.taskList.map(()=>{})
+```
+
+#### Thunder Client Extension
+
+Test API endpoints directly in VS CODE
